@@ -1,4 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2057{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}}
+{\colortbl ;\red255\green255\blue0;}
 {\*\generator Riched20 10.0.18362}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\qc\f0\fs32\lang9 Machine Learning Assignment\fs22\par
 \fs28 Fake News Predicting\par
@@ -45,6 +46,24 @@ Altogether, the deals are bigger than the largest single acquisition in the hist
 
 \pard\sa200\sl276\slmult1\qc\ul\b Part: 2\ulnone\b0\par
 
-\pard\sa200\sl276\slmult1\fs28\lang9\par
+\pard\sa200\sl276\slmult1\lang9 In preprocessing we had to analyse a few of the issues in the dataset. Some issues were - a lack of title, no author and the article ID. So we decided to create a tag for no author, no title, this is because there might be some correlation in have no title or no author and being fake news - due to the anonymity. We removed the article ID as they were not pertinent to deciding if it was reliable or unreliable. So as to normalise the dataset we removed all punctuation from the titles and text. We also removed filler words such as; at, as, the, a, an, ... The data was kept relatively in tact and \ul we ran tests on text and titles to see which was better at prediciting if it was reliable or unreliable. The large dataset did become an issue at times so we added in the NLKT library for . \ulnone As part of normalising the data we kept all words separate and stored in an array with a separate array for their counts, this was to see what the impact was of certain words. So as to see if certain words had higher probabilities of being in an unreliable news article or the counter, that some words are more likely to be in a reliable news article. \par
+
+\pard\sa200\sl276\slmult1\qc\ul Preprocessing & Normalising\par
+
+\pard\sa200\sl276\slmult1\ulnone We created an algorithm for preprocessing the dataset. The goal of this algorithm was to preprocess the data and then normalise it. The reason for this is that the data set consists of 20 800 articles and is quite sizeable, especially with some articles being 2 - 4 pages in length. Another aspect of requiring an algorithm for preprocessing was to make the algorithm reusable in future so that should you want to test it out on another dataset in a different language or in the future when the stories or articles that surround this are no longer as valid  - since certain topics come up more often than others for unreliable news. We thought that automating preprocessing would make the learning process more useful.\par
+please not that \i bad words \i0 refers to words which we do not want to use and will get rid of. These can be normal filler words that have little meaning or use such as 'the' and 'that' but takes it a little further such that if certain words are causing issues later on or are deemed not useful for what you are interested in you can add them to this list e.g 'Hillary', 'Trump', 'Clinton' - these words were quite frequent.\i\par
+\i0 The way it was preprocessed is as follows:\line 1) Read the data into a pandas dataframe, since it is a csv and ordered this is easy.\line 2.1) Clean an article of certain words - mainly words that do not add much meaning but are useful in English - e.g the, than, this, there, a, an, where, when, ...\line\fs40 2.2) \highlight1\b\i JESSE DISCUSS EMBEDDING HERE PLEASE\highlight0\b0\i0\line\fs22 3) We also removed all grammar and punctuation. One reason for this is that because splitting on white spaces caused ",but"* and "but"* to be considered unique and different when they are not.\line 4) We ensured that all the text was in lowercase for a similar reason as (3) since "But"* and "but"* would be considered different.\line 5)Finally the data was split on white spaces and used to create the respective dataframes for testing, validating and training.\par
+
+\pard\sa200\sl276\slmult1\qc\i\fs16 note with regards to * , but was removed but this was done just to illustrate for the example.\par
+
+\pard\sa200\sl276\slmult1\i0\fs22 The way it was normalised is quite similar to the way it was processed since some of the aspects of preprocessing here are also those that related to the preprocessing. For example that the article was cleaned, by cleaning the article we ensure that there is a consistency that these words will not be detected or matter in different datapoints and hence this creates a standard for the data - that these \i bad words\i0  will not be used. \tab There is also the fact that all the words are lowercase and hence that is another standard that was conformed to.\par
+
+\pard\sa200\sl276\slmult1\qc\ul How we created our training validation and test data.\par
+
+\pard\sa200\sl276\slmult1\ulnone We used a sample random that would generate 10% of the indices to be test indices, 10% to be validation indices and 80% to be training indices. These indices were recorded and then used to create panda dataframes for testing, validation and training. This ensured that you would always get a random set of dat to train, test and validate with. \par
+
+\pard\sa200\sl276\slmult1\qc\ul Additional data splitting\ulnone\par
+
+\pard\sa200\sl276\slmult1 With regards to how the data was split, we wanted to ensure that debugging was easy, so we created sets of; ten percent, twenty percent, fourty percent, eighty percent, the actual data. This was due to the fact that the run times as you got closer to the actual dataset tended to get quite large, for example text took thirty minutes to preprocess and normalise. \fs28\par
 }
  
